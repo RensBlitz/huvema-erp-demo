@@ -33,7 +33,7 @@ public class McpController {
     private FactuurRepository factuurRepository;
     
     private final Map<String, SseEmitter> sessions = new ConcurrentHashMap<>();
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     @GetMapping(value = "/sse", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
